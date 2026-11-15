@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Webinar Attendance Lab</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="brand">
+        <span class="mark">WA</span>
+        <div>
+          <h1>Webinar Attendance Lab</h1>
+          <p>Client productivity tool · Zoom attendance logging · CRM-ready export</p>
+        </div>
+      </div>
+      <div class="health" id="health">
+        <span class="pill" id="pill-api">API …</span>
+        <span class="pill" id="pill-zoom">Zoom …</span>
+      </div>
+    </header>
+
+    <section class="controls card">
+      <label class="field">
+        <span>Meeting / Webinar ID</span>
+        <input id="meeting-id" type="text" inputmode="numeric" placeholder="123 456 7890" />
+      </label>
+      <label class="field">
+        <span>Sync mode</span>
+        <select id="mode">
+          <option value="auto">Auto (live → past meeting → past webinar)</option>
+          <option value="live">Live participants</option>
+          <option value="past_meeting">Past meeting report</option>
+          <option value="past_webinar">Past webinar report</option>
+        </select>
+      </label>
+      <div class="actions">
+        <button class="btn primary" id="btn-sync" type="button">Sync now</button>
+        <button class="btn" id="btn-refresh" type="button">Refresh</button>
+        <button class="btn" id="btn-export" type="button">Export CSV</button>
+        <label class="btn file">
+          Import registrants CSV
+          <input id="roster-file" type="file" accept=".csv,text/csv" hidden />
+        </label>
+      </div>
+      <p class="hint" id="sync-msg">Enter a Zoom ID and sync to load members.</p>
+    </section>
+
+    <section class="stats">
+      <article class="stat card"><span>Logged</span><strong id="stat-total">0</strong></article>
+      <article class="stat card"><span>In meeting</span><strong id="stat-live">0</strong></article>
+      <article class="stat card"><span>Attended</span><strong id="stat-attended">0</strong></article>
+      <article class="stat card"><span>Partial</span><strong id="stat-partial">0</strong></article>
+      <article class="stat card"><span>Registered only</span><strong id="stat-noshow">0</strong></article>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-toolbar">
+        <input id="search" type="search" placeholder="Search name or email" />
+        <select id="label-filter">
+          <option value="">All labels</option>
+          <option value="in_meeting">In meeting</option>
+          <option value="attended">Attended</option>
+          <option value="partial">Partial</option>
+          <option value="registered_only">Registered only</option>
+          <option value="unknown">Unknown</option>
+        </select>
+        <span class="muted" id="last-sync">Last sync: —</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Label</th>
+              <th>Duration</th>
+              <th>Joined</th>
+              <th>Left</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="rows">
+            <tr><td colspan="7" class="empty">No participants yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="foot">
+      Built & maintained by <strong>Muhammad Muazzain</strong> · productivity tool for Zoom meetings & webinars
+    </footer>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
